@@ -1,0 +1,13 @@
+/* .upload {
+    align-items: center;
+    justify-items: center;
+} */
+
+img {
+    width: 250px;
+    height: 250px;
+    margin: "auto";
+    display: "block";
+    margin-bottom: theme.spacing(2);
+    object-fit: contain;
+  }
