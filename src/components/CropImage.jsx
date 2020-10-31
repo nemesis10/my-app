@@ -8,7 +8,7 @@ export default function CropImage(props) {
   const [crop, setCrop] = React.useState({
     unit: "%",
     width: 80,
-    aspect: 16 / 9,
+    aspect: 1 / 1,
   });
 
   const [src, setSrc] = React.useState();
@@ -87,6 +87,7 @@ export default function CropImage(props) {
           props.onSave({ file: croppedFile, preview });
           setModalOpen(false);
         }}
+        onClose={() => setModalOpen(false)}
       >
         <ReactCrop
           src={src}

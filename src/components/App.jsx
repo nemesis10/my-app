@@ -25,15 +25,16 @@ function App() {
       setError("Please select an image to upload");
     }
     }
-    setFile(file);
+
+    setFile(selectedFile);
     const previewUrl = URL.createObjectURL(selectedFile);
     setPreview(previewUrl);
   
   };
 
   const handleClick = () => {
-    if(image) {
-        const uploadTask = storage.ref(`images/${image.name}`).put(image);
+    if(file) {
+        const uploadTask = storage.ref(`images/${file.name}`).put(file);
         uploadTask.on(
           "state_changed",
           snapshot => {
@@ -48,7 +49,7 @@ function App() {
           () => {
             storage
             .ref("images")
-            .child(image.name)
+            .child(file.name)
             .getDownloadURL()
             .then(url => {
               setUrl(url);
@@ -68,17 +69,21 @@ function App() {
     setFile(file);
   }
 
+  const onModalClose = () => {
+
+  }
+
   return (
     <>
     <div className="upload">
 
     <div>
-    {url ? (<img src={url} />) : (<img src={preview || require("../images/profilepic.jpg")} />)}
+    {url ? (<img className="profilepic" src={url} />) : (<img className="profilepic" src={ require("../images/profilepic.jpg")} />)}
     </div>
 
     <div>
     <input type="file" onChange={handleChange} />
-    <button onClick={handleClick}>Upload</button>
+    <button className="btn" onClick={handleClick}>Upload</button>
     </div>
       
 
@@ -93,6 +98,7 @@ function App() {
 
     <CropImage 
     onSave={onCropSave}
+    onClose={onModalClose}
     selectedFile={image}  
     />
     </>

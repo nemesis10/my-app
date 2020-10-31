@@ -11,7 +11,7 @@ export default function CropDialog({open,onClose,children,onSave}) {
         <Dialog open={open} onCLose={onClose}>
             <DialogTitle id="crop-dialog-title">File Crop Preview</DialogTitle>
             <DialogContent>
-                <CropImage />
+                {children}
             </DialogContent>
             <DialogActions>
                <Button onClick={onClose} color="primary">
